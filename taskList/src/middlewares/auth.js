@@ -9,7 +9,10 @@ module.exports = (req, res, next) => {
       const error = ({ code: 'missingAuthToken' });
       return next(error);
     }
-    jwt.verify(token, secret);
+    const decoded = jwt.verify(token, secret);
+    req.user = {
+      name: decoded.data.user,
+    };
     next();
   } catch (err) {
       return res.status(401).json({

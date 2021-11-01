@@ -1,7 +1,6 @@
 const taskModel = require('../models/taskModel');
 
-const registerTask = async (title, description, date, status) => taskModel.taskRegister(title, 
-  description, date, status);
+const registerTask = async (task, userName) => taskModel.taskRegister(task, userName);
 
 module.exports = {
   registerTask,

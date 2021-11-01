@@ -5,15 +5,19 @@ const taskRegister = async (req, res, next) => {
   const { error } = joi.object({
     title: joi.string().required(),
     description: joi.string().required(),
-    date: joi.string().required(),
-    status: joi.date().format('DD-MM-YYYY').utc().required(),
+    date: joi.date().format('DD/MM/YY').utc().required(),
+    status: joi.string().required(),
   }).validate(req.body);
 
   if (error) return next(error);
 
   const { title, description, date, status } = req.body;
 
-  const register = await service.registerTask(title, description, date, status);
+  const { name } = req.user;
+
+  const task = { title, description, date, status };
+
+  const register = await service.registerTask(task, name);
   if (register.error) return next(register.error);
   return res.status(201).json(register);
 };
