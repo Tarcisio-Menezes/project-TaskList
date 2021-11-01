@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const model = require('../models/usersModel');
 
 const validLogin = async (name, password) => {
-  const user = await model.registerExists(name);
+  const user = await model.userExists(name);
   if (user && user.password === password) return true;
   return false;
 };
 
 const generatorToken = (name, password) => {
-  const secret = env.process.SECRET;
+  const secret = process.env.SECRET;
   
   const jwtConfig = {
     expiresIn: '1h',
