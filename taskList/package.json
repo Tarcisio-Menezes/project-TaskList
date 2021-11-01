@@ -27,6 +27,7 @@
     "nodemon": "^2.0.14"
   },
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "dotenv": "^10.0.0",
     "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.17.1",
