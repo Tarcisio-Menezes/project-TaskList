@@ -1,6 +1,7 @@
 const express = require('express');
 const usersRoute = require('../routes/usersRoutes');
 const loginRoute = require('../routes/loginRoutes');
+const tasksRoute = require('../routes/taskRoutes');
 const middlewareUsersError = require('../middlewares/usersError');
 const middlewareLoginError = require('../middlewares/loginError');
 
@@ -12,5 +13,7 @@ app.use(middlewareUsersError);
 
 app.use(loginRoute);
 app.use(middlewareLoginError);
+
+app.use(tasksRoute);
 
 module.exports = app;
