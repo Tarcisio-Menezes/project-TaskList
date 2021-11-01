@@ -6,8 +6,7 @@ const taskRegister = async (title, description, date, status) => {
     const db = await connection();
     const register = await db.collection('tasks').insertOne({
        title, description, date, status });
-    return ({
-      task: {
+    return ({ task: {
         title, 
         description,
         date,
@@ -35,6 +34,20 @@ const getAll = async () => {
     }
 };
 
+const getAllAlphabeticalOrder = async () => {
+  try {
+    const db = await connection();
+    return db.collection('tasks').find({}, 
+      { title: 1, description: 1, _id: 0, date: 1, status: 1 })
+        .sort({ title: 1 }).toArray();
+  } catch (err) {
+      return ({
+        error: 'Error when get task in the database',
+        code: err,
+      });
+    }
+};
+
 const taskEdit = async ({ id, title, description, date, status }) => {
   try {
     const db = await connection();
@@ -45,7 +58,6 @@ const taskEdit = async ({ id, title, description, date, status }) => {
       description,
       date,
       status,
-      _id: register.insertedId,
     });
   } catch (err) {
       return ({
@@ -58,7 +70,7 @@ const taskEdit = async ({ id, title, description, date, status }) => {
 const taskDelete = async (taskId) => {
   try {
     const db = await connection();
-    return db.collection('tasks').removeOne({ _id: ObjectId(recipeId) });
+    return db.collection('tasks').removeOne({ _id: ObjectId(taskId) });
   } catch (err) {
     return ({
       error: 'Error when remove task in the database', code: err });
@@ -70,4 +82,5 @@ module.exports = {
   getAll,
   taskEdit,
   taskDelete,
+  getAllAlphabeticalOrder,
 };
