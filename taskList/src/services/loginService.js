@@ -39,4 +39,4 @@ const userLogin = async (name, password) => {
 
 module.exports = {
   userLogin,
-}
+};
