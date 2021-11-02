@@ -57,9 +57,19 @@ const taskEdit = async (req, res, next) => {
   return res.status(200).json(edit);
 };
 
+const removeTask = async (req, res, next) => {
+  const { name } = req.user;
+  const { id } = req.params;
+
+  const remove = await service.removeTask(id, name);
+  if (remove.error) return next(remove.error);
+  return res.status(204).send();
+};
+
 module.exports = {
   taskRegister,
   getAllTasksUser,
   getAllAlphOrder,
   taskEdit,
+  removeTask,
 };
