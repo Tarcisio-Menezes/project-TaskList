@@ -29,7 +29,15 @@ const getAllTasksUser = async (req, res, next) => {
   return res.status(200).json(getAll);
 };
 
+const getAllAlphOrder = async (req, res, next) => {
+  const { name } = req.user;
+  const getAll = await service.getAllAlphOrder(name);
+  if (getAll.error) return next(getAll.error);
+  return res.status(200).json(getAll);
+};
+
 module.exports = {
   taskRegister,
   getAllTasksUser,
+  getAllAlphOrder,
 };
