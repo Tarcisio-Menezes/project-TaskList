@@ -8,7 +8,7 @@ module.exports = (err, _req, res, _next) => {
   }
 
   if (err.code === 'invalid') {
-    return res.status(401).json({ message: 'invalid id or entries' });
+    return res.status(401).json({ message: 'invalid taskId or entries' });
   }
 
   return res.status(500).json({ message: 'fatal error' });

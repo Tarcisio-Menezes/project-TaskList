@@ -71,7 +71,8 @@ const taskEdit = async (task, userName) => {
 const taskDelete = async (taskId) => {
   try {
     const db = await connection();
-    return db.collection('tasks').removeOne({ _id: ObjectId(taskId) });
+    const result = await db.collection('tasks').deleteOne({ _id: ObjectId(taskId) });
+    return result;
   } catch (err) {
     return ({
       error: 'Error when remove task in the database', code: err });
@@ -81,7 +82,7 @@ const taskDelete = async (taskId) => {
 const searchTaskById = async (taskId) => {
   try {
     const db = await connection();
-    const task = db.collection('tasks').findOne(ObjectId(taskId));
+    const task = await db.collection('tasks').findOne(ObjectId(taskId));
     if (task) return task;
     return false;
   } catch (err) {
