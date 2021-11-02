@@ -48,11 +48,12 @@ const getAllAlphabeticalOrder = async (userName) => {
     }
 };
 
-const taskEdit = async ({ id, title, description, date, status }) => {
+const taskEdit = async (task, userName) => {
+  const { id, title, description, date, status } = task;
   try {
     const db = await connection();
     await db.collection('tasks').updateOne({ _id: ObjectId(id) }, 
-      { $set: { title, description, date, status } });
+      { $set: { title, description, date, status, userName } });
     return ({ _id: id,
       title, 
       description,
