@@ -4,7 +4,10 @@ const registerTask = async (task, userName) => taskModel.taskRegister(task, user
 
 const getAllTask = async (userName) => taskModel.getAll(userName);
 
+const getAllAlphOrder = async (userName) => taskModel.getAllAlphabeticalOrder(userName);
+
 module.exports = {
   registerTask,
   getAllTask,
+  getAllAlphOrder,
 };
