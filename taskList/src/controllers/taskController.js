@@ -22,6 +22,14 @@ const taskRegister = async (req, res, next) => {
   return res.status(201).json(register);
 };
 
+const getAllTasksUser = async (req, res, next) => {
+  const { name } = req.user;
+  const getAll = await service.getAllTask(name);
+  if (getAll.error) return next(getAll.error);
+  return res.status(200).json(getAll);
+};
+
 module.exports = {
   taskRegister,
+  getAllTasksUser,
 };
