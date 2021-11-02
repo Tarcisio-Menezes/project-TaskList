@@ -4,5 +4,6 @@ const middlewareAuth = require('../middlewares/auth');
 
 router.post('/tasks', middlewareAuth, controller.taskRegister);
 router.get('/tasks', middlewareAuth, controller.getAllTasksUser);
+router.get('/tasks/order', middlewareAuth, controller.getAllAlphOrder);
 
 module.exports = router;
