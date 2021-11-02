@@ -78,10 +78,21 @@ const taskDelete = async (taskId) => {
   }
 };
 
+const searchTaskById = async (taskId) => {
+  try {
+    const db = await connection();
+    return db.collection('tasks').findOne(ObjectId(taskId));
+  } catch {
+      return ({
+        error: 'Error when sarch task by id in the database', code: err });
+    }
+};
+
 module.exports = {
   taskRegister,
   getAll,
   taskEdit,
   taskDelete,
   getAllAlphabeticalOrder,
+  searchTaskById,
 };

@@ -1,5 +1,4 @@
 const joi = require('joi').extend(require('@joi/date'));
-const { serialize } = require('bson');
 const service = require('../services/taskService');
 
 const taskRegister = async (req, res, next) => {
