@@ -48,11 +48,12 @@ const getAllAlphabeticalOrder = async (userName) => {
     }
 };
 
-const taskEdit = async ({ id, title, description, date, status }) => {
+const taskEdit = async (task, userName) => {
+  const { id, title, description, date, status } = task;
   try {
     const db = await connection();
     await db.collection('tasks').updateOne({ _id: ObjectId(id) }, 
-      { $set: { title, description, date, status } });
+      { $set: { title, description, date, status, userName } });
     return ({ _id: id,
       title, 
       description,
@@ -70,11 +71,24 @@ const taskEdit = async ({ id, title, description, date, status }) => {
 const taskDelete = async (taskId) => {
   try {
     const db = await connection();
-    return db.collection('tasks').removeOne({ _id: ObjectId(taskId) });
+    const result = await db.collection('tasks').deleteOne({ _id: ObjectId(taskId) });
+    return result;
   } catch (err) {
     return ({
       error: 'Error when remove task in the database', code: err });
   }
+};
+
+const searchTaskById = async (taskId) => {
+  try {
+    const db = await connection();
+    const task = await db.collection('tasks').findOne(ObjectId(taskId));
+    if (task) return task;
+    return false;
+  } catch (err) {
+      return ({
+        error: 'Error when sarch task by id in the database', code: err });
+    }
 };
 
 module.exports = {
@@ -83,4 +97,5 @@ module.exports = {
   taskEdit,
   taskDelete,
   getAllAlphabeticalOrder,
+  searchTaskById,
 };
