@@ -9,7 +9,7 @@ const getAllAlphOrder = async (userName) => taskModel.getAllAlphabeticalOrder(us
 const taskEdit = async (task, userName) => {
   const { id } = task;
   const taskById = await taskModel.searchTaskById(id);
-  if (taskById.userName.equals(userName)) {
+  if (taskById.userName === userName) {
     return taskModel.taskEdit(task, userName);
   } return ({
     error: { code: 'invalid' },

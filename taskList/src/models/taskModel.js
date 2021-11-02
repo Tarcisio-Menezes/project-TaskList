@@ -81,8 +81,10 @@ const taskDelete = async (taskId) => {
 const searchTaskById = async (taskId) => {
   try {
     const db = await connection();
-    return db.collection('tasks').findOne(ObjectId(taskId));
-  } catch {
+    const task = db.collection('tasks').findOne(ObjectId(taskId));
+    if (task) return task;
+    return false;
+  } catch (err) {
       return ({
         error: 'Error when sarch task by id in the database', code: err });
     }
