@@ -20,33 +20,33 @@ describe('Edita uma tarefa via SERVICES', function () {
 
   describe('quando é editada com sucesso', function () {
     it('retorna um objeto', async function () {
-      const response = await taskService.registerTask(payloadTask);
+      const response = await taskService.taskEdit(payloadTask);
 
       expect(response).to.be.a('object');
     });
 
     it('o objeto possui o "title" da tarefa editada', async function () {
-      const response = await taskService.registerTask(payloadTask);
+      const response = await taskService.taskEdit(payloadTask);
 
-      expect(response.task).to.have.a.property('title');
+      expect(response).to.have.a.property('title');
     });
 
     it('o objeto possui a "descrição" da tarefa editada', async function () {
-      const response = await taskService.registerTask(payloadTask);
+      const response = await taskService.taskEdit(payloadTask);
 
-      expect(response.task).to.have.a.property('description');
+      expect(response).to.have.a.property('description');
     });
 
     it('o objeto possui a "data" da tarefa editada', async function () {
-      const response = await taskService.registerTask(payloadTask);
+      const response = await taskService.taskEdit(payloadTask);
 
-      expect(response.task).to.have.a.property('date');
+      expect(response).to.have.a.property('date');
     });
 
     it('o objeto possui o "status" da tarefa editada', async function () {
-      const response = await taskService.registerTask(payloadTask);
+      const response = await taskService.taskEdit(payloadTask);
 
-      expect(response.task).to.have.a.property('status');
+      expect(response).to.have.a.property('status');
     });
   });
 });
