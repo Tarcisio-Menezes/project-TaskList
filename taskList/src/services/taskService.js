@@ -16,9 +16,19 @@ const taskEdit = async (task, userName) => {
   });  
 };
 
+const removeTask = async (taskId, userName) => {
+  const taskById = await taskModel.searchTaskById(taskId);
+  if (taskById.userName === userName) {
+    return taskModel.taskDelete(taskId);
+  } return ({
+    error: { code: 'invalid' },
+  });  
+};
+
 module.exports = {
   registerTask,
   getAllTask,
   getAllAlphOrder,
   taskEdit,
+  removeTask,
 };
