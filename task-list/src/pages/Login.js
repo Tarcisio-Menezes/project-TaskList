@@ -8,9 +8,11 @@ function Login() {
 
   return (
     <div>
+      <h1>Ebyrt Ágil</h1>
       <Form>
+        <h4>Cadastrar nova pessoa usuária</h4>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Pessoa colaboradora Ebyrt</Form.Label>
+          <Form.Label>Nome</Form.Label>
           <Form.Control
             type="text"
             placeholder="Digite o seu nome"
@@ -33,7 +35,7 @@ function Login() {
             type="submit"
             disabled={ false }
           >
-            Entrar
+            Cadastrar
           </Button>
         </Link>
       </Form>
