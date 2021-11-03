@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import MainContext from '../context/MainContext';
+import { userRegister } from '../services/APIConnection';
+
 
 function Login() {
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const { 
+    userName,
+    setUserName,
+    userPass,
+    setUserPass,
+  } = useContext(MainContext);
+
+  const addUser = async () => {
+    const result = await userRegister(userName, userPass);
+    return result;
+  }
 
   return (
     <div>
@@ -25,19 +36,16 @@ function Login() {
           <Form.Control
             type="password"
             placeholder="Digite sua senha"
-            onChange={ ({ target }) => setPassword(target.value) }
+            onChange={ ({ target }) => setUserPass(target.value) }
           />
         </Form.Group>
-
-        <Link to="/home">
-          <Button
-            variant="light"
-            type="submit"
-            disabled={ false }
-          >
-            Cadastrar
-          </Button>
-        </Link>
+        <Button
+          variant="light"
+          type="submit"
+          onClick={ () => addUser() }
+        >
+          Cadastrar
+        </Button>
       </Form>
     </div>
   );
