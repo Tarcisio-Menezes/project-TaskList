@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const usersRoute = require('../routes/usersRoutes');
 const loginRoute = require('../routes/loginRoutes');
 const tasksRoute = require('../routes/taskRoutes');
 const middlewareUsersError = require('../middlewares/usersError');
 const middlewareLoginError = require('../middlewares/loginError');
 const middlewareTaskError = require('../middlewares/tasksError');
+
+const { PORT } = process.env;
 
 const app = express();
 app.use(express.json());
