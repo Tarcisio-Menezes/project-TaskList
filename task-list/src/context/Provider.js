@@ -5,6 +5,7 @@ import MainContext from './MainContext';
 const Provider = ({ children }) => {
   const [userName, setUserName] = useState('');
   const [userPass, setUserPass] = useState('');
+  const [registerUser, setRegisterUser] = useState('');
   const [token, setToken] = useState('');
 
   const context = {
@@ -14,6 +15,8 @@ const Provider = ({ children }) => {
     setUserPass,
     token,
     setToken,
+    registerUser,
+    setRegisterUser,
   };
 
   return (
