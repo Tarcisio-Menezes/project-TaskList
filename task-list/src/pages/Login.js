@@ -19,32 +19,61 @@ function Login() {
 
   return (
     <div>
-      <h1>Ebyrt Ágil</h1>
-        <h4>Cadastrar nova pessoa usuária</h4>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Nome</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Digite o seu nome"
-            onChange={ ({ target }) => setUserName(target.value) }
-          />
-        </Form.Group>
+      <section className="newUsers">
+        <h1>Ebyrt Ágil</h1>
+          <h4>Cadastrar nova pessoa usuária</h4>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Nome</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Digite o seu nome"
+              onChange={ ({ target }) => setUserName(target.value) }
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Digite sua senha"
-            onChange={ ({ target }) => setUserPass(target.value) }
-          />
-        </Form.Group>
-        <Button
-          variant="light"
-          type="submit"
-          onClick={ () => addUser() }
-        >
-          Cadastrar
-        </Button>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Digite sua senha"
+              onChange={ ({ target }) => setUserPass(target.value) }
+            />
+          </Form.Group>
+          <Button
+            variant="light"
+            type="submit"
+            onClick={ () => addUser() }
+          >
+            Cadastrar
+          </Button>
+      </section>
+      <section className="users">
+      <h4>Fazer Login</h4>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Nome</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Digite o seu nome"
+              onChange={ ({ target }) => setUserName(target.value) }
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Digite sua senha"
+              onChange={ ({ target }) => setUserPass(target.value) }
+            />
+          </Form.Group>
+          <Button
+            variant="light"
+            type="submit"
+            onClick={ () => addUser() }
+          >
+            Cadastrar
+          </Button>
+      </section>
     </div>
   );
 }

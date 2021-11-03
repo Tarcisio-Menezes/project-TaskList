@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 const usersRoute = require('../routes/usersRoutes');
 const loginRoute = require('../routes/loginRoutes');
 const tasksRoute = require('../routes/taskRoutes');
@@ -7,7 +9,11 @@ const middlewareLoginError = require('../middlewares/loginError');
 const middlewareTaskError = require('../middlewares/tasksError');
 
 const app = express();
+
+app.use(cors());
+  
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(usersRoute);
 app.use(middlewareUsersError);
