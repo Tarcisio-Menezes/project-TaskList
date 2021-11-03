@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const usersRoute = require('../routes/usersRoutes');
 const loginRoute = require('../routes/loginRoutes');
 const tasksRoute = require('../routes/taskRoutes');
@@ -8,6 +9,14 @@ const middlewareTaskError = require('../middlewares/tasksError');
 
 const app = express();
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: `http://localhost:${PORT}`,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['authorization'],
+  }),
+);
 
 app.use(usersRoute);
 app.use(middlewareUsersError);
