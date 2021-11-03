@@ -4,13 +4,16 @@ import MainContext from './MainContext';
 
 const Provider = ({ children }) => {
   const [userName, setUserName] = useState('');
-  const [userPass, setUserPass] = useState();
+  const [userPass, setUserPass] = useState('');
+  const [token, setToken] = useState('');
 
   const context = {
     userName,
     setUserName,
     userPass,
     setUserPass,
+    token,
+    setToken,
   };
 
   return (
