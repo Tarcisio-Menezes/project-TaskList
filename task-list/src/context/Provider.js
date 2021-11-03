@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import MainContext from './MainContext';
 
 const Provider = ({ children }) => {
-  const [userLogin, setUserLogin] = useState();
+  const [userName, setUserName] = useState('');
+  const [userPass, setUserPass] = useState();
 
   const context = {
-    userLogin,
-    setUserLogin,
+    userName,
+    setUserName,
+    userPass,
+    setUserPass,
   };
 
   return (
