@@ -6,11 +6,16 @@ export const userRegister = (userName, pass) => {
     password: pass,
   };
 
-  axios.post('http://localhost:3030/users', body)
+  const headers = {
+    'Content-Type': 'application/json',
+    "Access-Control-Allow-Origin": "*"
+  };
+
+  axios.post('http://localhost:3000/users', body, { headers })
     .then((response) => {
       return response.data;
     })
-    .then((data) => console.log(data))
+    .then((data) => data)
     .catch((errorOrResponse) => {
       if (errorOrResponse.status) {
         return console.error(`Request failed with status ${errorOrResponse.status}`);

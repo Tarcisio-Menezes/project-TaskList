@@ -20,7 +20,6 @@ function Login() {
   return (
     <div>
       <h1>Ebyrt Ágil</h1>
-      <Form>
         <h4>Cadastrar nova pessoa usuária</h4>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nome</Form.Label>
@@ -46,7 +45,6 @@ function Login() {
         >
           Cadastrar
         </Button>
-      </Form>
     </div>
   );
 }

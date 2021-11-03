@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <BrowserRouter basename='/tarcisio-menezes'>
+  <BrowserRouter>
     <React.StrictMode>
       <App />
     </React.StrictMode>
