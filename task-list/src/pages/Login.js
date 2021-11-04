@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import MainContext from '../context/MainContext';
@@ -10,7 +11,6 @@ function Login() {
     setUserName,
     userPass,
     setUserPass,
-    token,
     setToken,
   } = useContext(MainContext);
 
@@ -61,6 +61,7 @@ function Login() {
           variant="light"
           type="submit"
           onClick={ () => userLogin(userName, userPass) }
+          disabled={ !userName || !userPass }
         >
           Entrar
         </Button>

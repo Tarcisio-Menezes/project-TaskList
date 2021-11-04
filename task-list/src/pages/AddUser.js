@@ -61,6 +61,7 @@ function AddUser() {
           variant="light"
           type="submit"
           onClick={ () => createUser(userName, userPass) }
+          disabled={ !userName || !userPass }
         >
           Cadastrar
         </Button>
