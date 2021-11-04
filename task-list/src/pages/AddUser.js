@@ -40,41 +40,45 @@ function AddUser() {
 
   return (
     <div>
-      <h1>Ebyrt Ágil</h1>
-      <h4>Cadastrar nova pessoa usuária</h4>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Nome</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Digite o seu nome"
-          onChange={ ({ target }) => setUserName(target.value) }
-        />
-      </Form.Group>
+      <section className="createTitle">
+        <h1>Ebyrt Ágil</h1>
+        <h4>Cadastrar nova pessoa usuária</h4>
+      </section>
+      <section className="createData">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Nome</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Digite o seu nome"
+            onChange={ ({ target }) => setUserName(target.value) }
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Senha</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Digite sua senha"
-          onChange={ ({ target }) => setUserPass(target.value) }
-        />
-      </Form.Group>
-      <button
-        variant="light"
-        type="submit"
-        onClick={ () => createUser(userName, userPass) }
-        disabled={ !userName || !userPass }
-      >
-        Cadastrar
-      </button>
-      <Link to="/">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Senha</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Digite sua senha"
+            onChange={ ({ target }) => setUserPass(target.value) }
+          />
+        </Form.Group>
         <button
           variant="light"
           type="submit"
+          onClick={ () => createUser(userName, userPass) }
+          disabled={ !userName || !userPass }
         >
-          Voltar para Login
+          Cadastrar
         </button>
-      </Link>
+        <Link to="/">
+          <button
+            variant="light"
+            type="submit"
+          >
+            Voltar para Login
+          </button>
+        </Link>
+      </section>
     </div>
   );
 }
