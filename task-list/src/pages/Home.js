@@ -6,32 +6,33 @@ function Home () {
 
   const { userName, token, setTasks, tasks } = useContext(MainContext);
 
-  const getAllTasks = (token) => {
+  const getAllTasks = async (token) => {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'authorization':token,
     };
+
   
     axios.get('http://localhost:3000/tasks/order', { headers })
       .then((response) => {
         if (response.data) {
-          console.log(response.data);
           return setTasks(response.data);
         } 
       })
       .catch((errorOrResponse) => {
-         return alert(`Houve um problema com o banco de dados, 
-          tente novamente mais tarde${errorOrResponse}`);
+         return errorOrResponse;
       });
   }
 
   useEffect(() => {
     async function getTasks() {
-      getAllTasks(token);
+      await getAllTasks(token);
     }
     getTasks();
-  }, []);
+  }, [token, setTasks]);
+
+  console.log(tasks);
 
   const userIsValid = () => {
     if (!token) {
