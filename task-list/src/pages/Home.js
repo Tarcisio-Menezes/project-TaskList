@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import MainContext from '../context/MainContext';
+import getTaskForUserValid from '../services/getTaskForUserValid';
 
 function Home () {
 
@@ -19,7 +20,6 @@ function Home () {
       'authorization':token,
     };
 
-  
     axios.get('http://localhost:3000/tasks/order', { headers })
       .then((response) => {
         if (response.data) {
@@ -63,42 +63,7 @@ function Home () {
     getTasks();
   }, [token, respost]);
 
-  const getValidUserTask = () => {
-    if (!token) {
-      return <h2>Oops, seu token é inválido ou expirou, por favor faça login novamente.</h2>
-    } return (
-      <section>
-        <h2>Olá {userName}, espero que esteja bem!</h2>
-        <h4>Suas tarefas são:</h4>
-        { tasks && tasks.map((task, index) => {
-          return (
-          <Card style={{ width: '18rem' }} key={ index }>
-            <Card.Body>
-              <Card.Title>
-                { task.title }
-              </Card.Title>
-              <Card.Subtitle 
-                className="mb-2 text-muted">
-                    Prazo: { task.date }
-              </Card.Subtitle>
-              <Card.Subtitle 
-                className="mb-2 text-muted">
-                  Status: { task.status }
-              </Card.Subtitle>
-              <Card.Text>
-                { task.description }
-              </Card.Text>
-              <button href="#">Editar</button>
-              <button href="#">Deletar</button>
-            </Card.Body>
-          </Card>
-          );
-        })
-      }
-      </section>
-    );
-  };
-
+  
   const addNewTask = () => {
     if (!token) {
       return <h2> Nenhuma tarefa disponível.</h2>
@@ -139,11 +104,9 @@ function Home () {
     );
   };
 
-
-
   return (
     <section>
-      { getValidUserTask() }
+      { getTaskForUserValid(token, tasks, userName) }
       { addNewTask() }
     </section>
   );
