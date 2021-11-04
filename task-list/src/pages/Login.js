@@ -67,6 +67,16 @@ function Login() {
             Entrar
           </button>
         </Link>
+        <br />
+        <br />
+        <div>
+          <p>Ainda não tem cadastro?</p>
+          <Link to='/create-user'>
+            <button>
+              Crie seu usuário aqui
+            </button>
+          </Link>
+        </div>
     </div>
   );
 }
