@@ -13,13 +13,13 @@ function Home () {
   const [taskDate, setTaskDate] = useState('');
   const [respost, setRespost] = useState('');
 
-  const getAllTasks = async (token) => {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'authorization':token,
-    };
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'authorization': token,
+  };
 
+  const getAllTasks = async () => {
     axios.get('http://localhost:3000/tasks/order', { headers })
       .then((response) => {
         if (response.data) {
@@ -31,20 +31,14 @@ function Home () {
       });
   }
 
-  const addTasks = async (token) => {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'authorization':token,
-    };
-
+  const addTasks = async () => {
     const body = {
       title: taskTitle,
       description: taskDescription,
       date: taskDate,
       status: taskStatus,
     };
-  
+
     axios.post('http://localhost:3000/tasks', body, { headers })
       .then((response) => {
         if (response.data) {
