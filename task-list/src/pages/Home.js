@@ -52,7 +52,7 @@ function Home () {
   const removeTasks = async (taskId) => {
     axios.delete(`http://localhost:3000/tasks/${taskId}`, { headers })
       .then(() => {
-        return setRespost(true);
+        return setRespost(tasks);
       })
       .catch((errorOrResponse) => {
          return errorOrResponse;
