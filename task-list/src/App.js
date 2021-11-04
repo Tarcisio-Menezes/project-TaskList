@@ -1,3 +1,4 @@
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Provider from './context/Provider';
 import Home from './pages/Home';
