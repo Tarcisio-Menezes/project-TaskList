@@ -7,6 +7,7 @@ const Provider = ({ children }) => {
   const [userPass, setUserPass] = useState('');
   const [registerUser, setRegisterUser] = useState('');
   const [token, setToken] = useState('');
+  const [tasks, setTasks] = useState('');
 
   const context = {
     userName,
@@ -17,6 +18,8 @@ const Provider = ({ children }) => {
     setToken,
     registerUser,
     setRegisterUser,
+    tasks,
+    setTasks,
   };
 
   return (
