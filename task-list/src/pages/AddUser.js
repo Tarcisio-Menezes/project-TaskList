@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import MainContext from '../context/MainContext';
 
 function AddUser() {
@@ -57,14 +57,14 @@ function AddUser() {
             onChange={ ({ target }) => setUserPass(target.value) }
           />
         </Form.Group>
-        <Button
+        <button
           variant="light"
           type="submit"
           onClick={ () => createUser(userName, userPass) }
           disabled={ !userName || !userPass }
         >
           Cadastrar
-        </Button>
+        </button>
     </div>
   );
 }

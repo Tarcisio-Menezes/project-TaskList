@@ -57,14 +57,16 @@ function Login() {
             onChange={ ({ target }) => setUserPass(target.value) }
           />
         </Form.Group>
-        <Button
-          variant="light"
-          type="submit"
-          onClick={ () => userLogin(userName, userPass) }
-          disabled={ !userName || !userPass }
-        >
-          Entrar
-        </Button>
+        <Link to='/home'>
+          <button
+            variant="light"
+            type="submit"
+            onClick={ () => userLogin(userName, userPass) }
+            disabled={ !userName || !userPass }
+          >
+            Entrar
+          </button>
+        </Link>
     </div>
   );
 }
