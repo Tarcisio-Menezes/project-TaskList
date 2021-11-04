@@ -59,6 +59,22 @@ function Home () {
       });
   }
 
+  const editTasks = async (taskId) => {
+    const body = {
+      title: taskTitle,
+      description: taskDescription,
+      date: taskDate,
+      status: taskStatus,
+    };
+    axios.put(`http://localhost:3000/tasks/${taskId}`, body, { headers })
+      .then(() => {
+        return setRespost(tasks);
+      })
+      .catch((errorOrResponse) => {
+         return errorOrResponse;
+      });
+  }
+
   useEffect(() => {
     async function getTasks() {
       await getAllTasks(token);
@@ -92,7 +108,9 @@ function Home () {
               <Card.Text>
                 { task.description }
               </Card.Text>
-              <button>
+              <button
+                onClick={ () => editTasks(_id) }
+              >
                 Editar
               </button>
               <button
@@ -114,7 +132,7 @@ function Home () {
       return <h2> Nenhuma tarefa disponível.</h2>
     } return (
         <section>
-          <h4>Adicionar nova tarefa</h4>
+          <h4>Adicionar ou Editar tarefa</h4>
           <Form.Control
             type="text"
             placeholder="Título da nova tarefa"
