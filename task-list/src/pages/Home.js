@@ -11,6 +11,7 @@ function Home() {
   const [taskStatus, setTaskStatus] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [respost, setRespost] = useState('');
+  const [order, setOrder] = useState(false);
 
   const headers = {
     'Content-Type': 'application/json',
@@ -19,7 +20,9 @@ function Home() {
   };
 
   const getAllTasks = async () => {
-    axios.get('http://localhost:3000/tasks/order', { headers })
+    axios.get(`http://localhost:3000/tasks/${
+      order ? 'order' : ''
+    }`, { headers })
       .then((response) => {
         if (response.data) {
           return setTasks(response.data);
@@ -68,7 +71,7 @@ function Home() {
       await getAllTasks();
     }
     getTasks();
-  }, [token, respost]);
+  }, [token, respost, order]);
 
   const getTaskForUserValid = () => {
     if (!token) {
@@ -86,6 +89,12 @@ function Home() {
           , espero que esteja bem!
         </h2>
         <h4>Suas tarefas são:</h4>
+        <button
+          type="button"
+          onClick={ order ? () => setOrder(false) : () => setOrder(true) }
+        >
+          Ordem alfabética
+        </button>
         { tasks && tasks.map((task, index) => {
           const { _id } = task;
           return (
