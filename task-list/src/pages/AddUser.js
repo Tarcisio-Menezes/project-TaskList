@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import MainContext from '../context/MainContext';
+import '../css/addUser.css';
 
 function AddUser() {
   const {

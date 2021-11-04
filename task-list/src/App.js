@@ -5,8 +5,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import AddUser from './pages/AddUser';
 import ErrorPage from './pages/ErrorPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 function App() {
   return (
