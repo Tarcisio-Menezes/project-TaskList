@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Card  } from 'react-bootstrap';
 import axios from 'axios';
 import MainContext from '../context/MainContext';
-import getTaskForUserValid from '../services/getTaskForUserValid';
 
 function Home () {
 
@@ -50,6 +49,16 @@ function Home () {
       });
   }
 
+  const removeTasks = async (taskId) => {
+    axios.delete(`http://localhost:3000/tasks/${taskId}`, { headers })
+      .then(() => {
+        return setRespost(true);
+      })
+      .catch((errorOrResponse) => {
+         return errorOrResponse;
+      });
+  }
+
   useEffect(() => {
     async function getTasks() {
       await getAllTasks(token);
@@ -57,8 +66,50 @@ function Home () {
     getTasks();
   }, [token, respost]);
 
+  const getTaskForUserValid = (token) => {
+    if (!token) {
+      return <h2>Oops, seu token é inválido ou expirou, por favor faça login novamente.</h2>
+    } return (
+      <section>
+        <h2>Olá {userName}, espero que esteja bem!</h2>
+        <h4>Suas tarefas são:</h4>
+        { tasks && tasks.map((task, index) => {
+          const { _id } = task 
+          return (
+          <Card style={{ width: '18rem' }} key={ index }>
+            <Card.Body>
+              <Card.Title>
+                { task.title }
+              </Card.Title>
+              <Card.Subtitle 
+                className="mb-2 text-muted">
+                  Prazo: { task.date }
+              </Card.Subtitle>
+              <Card.Subtitle 
+                className="mb-2 text-muted">
+                  Status: { task.status }
+              </Card.Subtitle>
+              <Card.Text>
+                { task.description }
+              </Card.Text>
+              <button>
+                Editar
+              </button>
+              <button
+                onClick={ () => removeTasks(_id) }
+              >
+                Deletar
+              </button>
+            </Card.Body>
+          </Card>
+          );
+        })
+      }
+      </section>
+    );
+  };
   
-  const addNewTask = () => {
+  const addNewTask = (token) => {
     if (!token) {
       return <h2> Nenhuma tarefa disponível.</h2>
     } return (
@@ -100,8 +151,8 @@ function Home () {
 
   return (
     <section>
-      { getTaskForUserValid(token, tasks, userName) }
-      { addNewTask() }
+      { getTaskForUserValid(token) }
+      { addNewTask(token) }
     </section>
   );
 };
