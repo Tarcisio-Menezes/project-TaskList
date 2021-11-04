@@ -1,0 +1,58 @@
+div.homeTitles {
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  justify-content: center;
+}
+
+section.homeTasks {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1%;
+  text-align: center;
+}
+
+section.homeTasks .homeCard {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+div.homeOrderButton {
+  display: flex;
+  justify-content: center;
+}
+
+section.homeData {
+  margin: auto;
+  padding-top: 2%;
+  width: 20%;
+}
+
+section.homeData input {
+  margin: 1%;
+}
+
+section.homeData a {
+  padding: 0.5%;
+}
+
+.homeNewTaskButton {
+  display: flex;
+  justify-content: center;
+}
+
+div.exitButton {
+  display: flex;
+  margin: 3%;
+  justify-content: flex-start;
+}
+
+div.exitButton a {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
