@@ -3,17 +3,18 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import MainContext from '../context/MainContext';
 
-function AddUser() {
+function Login() {
 
   const { 
     userName,
     setUserName,
     userPass,
     setUserPass,
-    setRegisterUser,
+    token,
+    setToken,
   } = useContext(MainContext);
 
-  const createUser = (userName, pass) => {
+  const userLogin = (userName, pass) => {
     const body = {
       name: userName,
       password: pass,
@@ -24,22 +25,21 @@ function AddUser() {
       "Access-Control-Allow-Origin": "*"
     };
   
-    axios.post('http://localhost:3000/users', body, { headers })
+    axios.post('http://localhost:3000/login', body, { headers })
       .then((response) => {
-        if (response.data.user.name) {
-          setRegisterUser(response.data.user);
-          return alert(`O usuário ${userName} foi cadastrado com sucesso!`)
+        if (response.data.token) {
+          return setToken(response.data.token);
         } 
       })
       .catch((errorOrResponse) => {
-         return alert(`O usuário ${userName} já está cadastrado. ${errorOrResponse}`);
+         return alert(`Houve um problema ao autenticar o usuário ${userName}. ${errorOrResponse}`);
       });
   }
 
   return (
     <div>
       <h1>Ebyrt Ágil</h1>
-        <h4>Cadastrar nova pessoa usuária</h4>
+        <h4>Login de pessoa colaboradora</h4>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Nome</Form.Label>
           <Form.Control
@@ -60,12 +60,12 @@ function AddUser() {
         <Button
           variant="light"
           type="submit"
-          onClick={ () => createUser(userName, userPass) }
+          onClick={ () => userLogin(userName, userPass) }
         >
-          Cadastrar
+          Entrar
         </Button>
     </div>
   );
 }
 
-export default AddUser;
+export default Login;
