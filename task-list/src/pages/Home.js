@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Card  } from 'react-bootstrap';
 import axios from 'axios';
 import MainContext from '../context/MainContext';
@@ -171,6 +172,11 @@ function Home () {
     <section>
       { getTaskForUserValid(token) }
       { addNewTask(token) }
+      <Link to='/'>
+        <button>
+          Sair
+        </button>
+      </Link>
     </section>
   );
 };

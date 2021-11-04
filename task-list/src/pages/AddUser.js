@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import MainContext from '../context/MainContext';
@@ -65,6 +66,14 @@ function AddUser() {
         >
           Cadastrar
         </button>
+        <Link to='/'>
+        <button
+          variant="light"
+          type="submit"
+        >
+          Voltar para Login
+        </button>
+        </Link>
     </div>
   );
 }
