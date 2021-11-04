@@ -63,7 +63,6 @@ function Login() {
         </Form.Group>
         <Link to="/home">
           <button
-            variant="light"
             type="submit"
             onClick={ () => userLogin(userName, userPass) }
             disabled={ !userName || !userPass }
@@ -77,11 +76,7 @@ function Login() {
       <div className="register">
         <p>Ainda não tem cadastro?</p>
         <Link to="/create-user">
-          <button
-            type="button"
-          >
-            Crie seu usuário aqui
-          </button>
+          Crie seu usuário aqui
         </Link>
       </div>
     </div>

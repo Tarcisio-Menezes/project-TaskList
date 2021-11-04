@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Form, Card } from 'react-bootstrap';
 import axios from 'axios';
 import MainContext from '../context/MainContext';
+import '../css/home.css';
 
 function Home() {
   const { userName, token, setTasks, tasks } = useContext(MainContext);
@@ -76,66 +76,78 @@ function Home() {
   const getTaskForUserValid = () => {
     if (!token) {
       return (
-        <h2>
-          Oops, seu token é inválido ou expirou,
-          por favor faça login novamente.
-        </h2>);
+        <div className="homeTitles">
+          <h2>
+            Oops, seu token é inválido ou expirou,
+            por favor faça login novamente.
+          </h2>
+        </div>);
     } return (
       <section>
-        <h2>
-          Olá
-          {' '}
-          {userName}
-          , espero que esteja bem!
-        </h2>
-        <h4>Suas tarefas são:</h4>
-        <button
-          type="button"
-          onClick={ order ? () => setOrder(false) : () => setOrder(true) }
-        >
-          Ordem alfabética
-        </button>
-        { tasks && tasks.map((task, index) => {
-          const { _id } = task;
-          return (
-            <Card style={ { width: '18rem' } } key={ index }>
-              <Card.Body>
-                <Card.Title>
-                  { task.title }
-                </Card.Title>
-                <Card.Subtitle
-                  className="mb-2 text-muted"
-                >
-                  Prazo:
-                  {' '}
-                  { task.date }
-                </Card.Subtitle>
-                <Card.Subtitle
-                  className="mb-2 text-muted"
-                >
-                  Status:
-                  {' '}
-                  { task.status }
-                </Card.Subtitle>
-                <Card.Text>
-                  { task.description }
-                </Card.Text>
-                <button
-                  type="button"
-                  onClick={ () => editTasks(_id) }
-                >
-                  Editar
-                </button>
-                <button
-                  type="button"
-                  onClick={ () => removeTasks(_id) }
-                >
-                  Deletar
-                </button>
-              </Card.Body>
-            </Card>
-          );
-        })}
+        <div className="homeTitles">
+          <h2>
+            Olá
+            {' '}
+            {userName}
+            , espero que esteja bem!
+          </h2>
+          <h4>Suas tarefas são:</h4>
+        </div>
+        <div className="homeOrderButton">
+          <button
+            type="button"
+            onClick={ order ? () => setOrder(false) : () => setOrder(true) }
+          >
+            Ordem alfabética
+          </button>
+        </div>
+        <section className="homeTasks">
+          { tasks && tasks.map((task, index) => {
+            const { _id } = task;
+            return (
+              <Card
+                className="homeCard"
+                style={ { width: '18rem' } }
+                key={ index }
+              >
+                <Card.Body>
+                  <Card.Title>
+                    { task.title }
+                  </Card.Title>
+                  <Card.Subtitle
+                    className="mb-2 text-muted"
+                  >
+                    Prazo:
+                    {' '}
+                    { task.date }
+                  </Card.Subtitle>
+                  <Card.Subtitle
+                    className="mb-2 text-muted"
+                  >
+                    Status:
+                    {' '}
+                    { task.status }
+                  </Card.Subtitle>
+                  <Card.Text>
+                    { task.description }
+                  </Card.Text>
+                  <button
+                    type="button"
+                    onClick={ () => editTasks(_id) }
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={ () => removeTasks(_id) }
+                  >
+                    Deletar
+                  </button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </section>
       </section>
     );
   };
@@ -144,7 +156,7 @@ function Home() {
     if (!token) {
       return <h2> Nenhuma tarefa disponível.</h2>;
     } return (
-      <section>
+      <section className="homeData">
         <h4>Adicionar ou Editar tarefa</h4>
         <Form.Control
           type="text"
@@ -170,13 +182,15 @@ function Home() {
           onChange={ ({ target }) => setTaskDate(target.value) }
           required
         />
-        <button
-          type="button"
-          onClick={ () => addTasks() }
-          disabled={ !taskDate || !taskDescription || !taskTitle || !taskStatus }
-        >
-          Enviar
-        </button>
+        <div className="homeNewTaskButton">
+          <button
+            type="button"
+            onClick={ () => addTasks() }
+            disabled={ !taskDate || !taskDescription || !taskTitle || !taskStatus }
+          >
+            Enviar
+          </button>
+        </div>
       </section>
     );
   };
@@ -185,13 +199,11 @@ function Home() {
     <section>
       { getTaskForUserValid() }
       { addNewTask() }
-      <Link to="/">
-        <button
-          type="button"
-        >
+      <div className="exitButton">
+        <a href="/">
           Sair
-        </button>
-      </Link>
+        </a>
+      </div>
     </section>
   );
 }
