@@ -9,7 +9,7 @@ const validLogin = async (name, password) => {
 };
 
 const generatorToken = (name, password) => {
-  const secret = process.env.SECRET;
+  const secret = 'MeCoNtRaTa';
   
   const jwtConfig = {
     expiresIn: '1h',
