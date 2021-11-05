@@ -27,17 +27,17 @@ tornar o ambiente de trabalho mais organizado e consequentemente mais produtivo.
 
 ## Para executar a aplicação:
 
-1. Clone o repositório
+1. Clone o repositório:
   * `git clone git@github.com:Tarcisio-Menezes/project-TaskList.git`
-  * Utilizando o terminal, entre na pasta do repositório que você acabou de clonar 
-  * Entre na pasta `backEnd`
+  * Utilizando o terminal, entre na pasta do repositório que você acabou de clonar .
+  * Entre na pasta `backEnd`.
 
 
-2. Inicie sua instâcia MongoDB
+2. Inicie sua instâcia MongoDB:
   * No linux: `sudo systemctl start mongod.service`
 
 
-3. Instale as dependências e inicialize a aplicação
+3. Instale as dependências e inicialize a aplicação:
   * Instale as dependências:
     * `npm install`
   * Inicie a aplicação:
@@ -50,13 +50,23 @@ tornar o ambiente de trabalho mais organizado e consequentemente mais produtivo.
   * Entre na pasta `frontEnd`
 
 
-5. Instale as dependências e inicialize a aplicação
+5. Instale as dependências e inicialize a aplicação:
     * Instale as dependências:
       * `npm install`
     * Inicie a aplicação:
       * `npm start`
-      * Uma nova aba de seu navegador será aberta com a aplicação
-  
+      * Aperte `enter` caso precise iniciar em uma porta diferente da padrão.
+      * Uma nova aba de seu navegador será aberta com a aplicação.
+
+## Observações técnicas
+
+1. A conexão com o banco de dados, feita em `/backend/src/models/connection`, por padrão,
+utiliza o endpoint `mongodb://localhost`. Você pode utilizar o endpoint que preferir.
+
+
+2. O dotEnv foi desabilitado para facilitar o clone do projeto, você pode mudar informações
+sensíveis como a porta da conexão com API ou a senha JWT. Recomendo utilizar variáveis de ambiente.
+
 
  * Se você não possuir o `npm` instalado em sua máquina:
    * Faça o download [aqui](https://www.npmjs.com/package/download)
@@ -69,34 +79,34 @@ tornar o ambiente de trabalho mais organizado e consequentemente mais produtivo.
 * Ebyrt Ágil foi projetado para telas convencionais de computadores.
 
 * A aplicação vai iniciar na página de login principal.
-  * Novos usuários devem clicar no link `Crie seu usuário aqui`
+  * Novos usuários devem clicar no link `Crie seu usuário aqui`.
 
-* Você será redirecionado para a tela de cadastros
-  * Digite o seu nome de usuário e senha. Não há restrição de números de caracteres
+* Você será redirecionado para a tela de cadastros.
+  * Digite o seu nome de usuário e senha. Não há restrição de números de caracteres.
 
-* Clique em cadastrar. Um alert comunicará se foi possível criar o seu usuário com sucesso
-  * Com o usuário cadastrado, clique em `Voltar para Login`
+* Clique em cadastrar. Um alert comunicará se foi possível criar o seu usuário com sucesso.
+  * Com o usuário cadastrado, clique em `Voltar para Login`.
 
-* Digite o seu usuário e senha cadastrados na tela anterior
-  * Clique em `Entrar`, você será redirecionado para a tela principal
+* Digite o seu usuário e senha cadastrados na tela anterior.
+  * Clique em `Entrar`, você será redirecionado para a tela principal.
 
-* Como novo usuário, você não terá tarefas para mostrar
-  * Para adicionar uma nova tarefa, preencha as caixas te texto conforme indicado pelos placeholders e clique em enviar
+* Como novo usuário, você não terá tarefas para mostrar.
+  * Para adicionar uma nova tarefa, preencha as caixas te texto conforme indicado pelos placeholders e clique em enviar.
 
-* O campo título deve ser preenchido somente com letras minúsculas e o prazo deve ser em formato `DD/MM/AA`
+* O campo título deve ser preenchido somente com letras minúsculas e o prazo deve ser em formato `DD/MM/AA`.
 
-* A tarefa será adicionada em seu painel
+* A tarefa será adicionada em seu painel.
 
-* Para editar uma tarefa utilize os mesmos campos de texto e clique em `editar` no card de tarefa a ser editado
-  * Para poupar tempo você pode copiar e colar os dados da tarefa a ser editada, colar nos campos de texto e modificar apenas o campo que deseja editar
+* Para editar uma tarefa utilize os mesmos campos de texto e clique em `editar` no card de tarefa a ser editado.
+  * Para poupar tempo você pode copiar e colar os dados da tarefa a ser editada, colar nos campos de texto e modificar apenas o campo que deseja editar.
 
-* Para excluir uma tarefa, apenas clique no botão `Deletar` no card da tarefa
+* Para excluir uma tarefa, apenas clique no botão `Deletar` no card da tarefa.
 
-* Na parte superior, clique no botão `Ordem alfabética` para ordenar as tarefas por ordem alfabética de título
+* Na parte superior, clique no botão `Ordem alfabética` para ordenar as tarefas por ordem alfabética de título.
 
 * Para sair do sistema clique no botão `Sair`, na parte inferior esquerda da tela
-  * Você será redirecionado para a tela de login
+  * Você será redirecionado para a tela de login.
   
-* Caso você tente fazer login com usuário incorreto, um alert será emitido
+* Caso você tente fazer login com usuário incorreto, um alert será emitido.
 
 ---
