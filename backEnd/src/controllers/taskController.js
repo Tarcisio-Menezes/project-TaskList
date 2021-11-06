@@ -1,7 +1,8 @@
 const joi = require('joi').extend(require('@joi/date'));
+const rescue = require('express-rescue');
 const service = require('../services/taskService');
 
-const taskRegister = async (req, res, next) => {
+const taskRegister = rescue(async (req, res, next) => {
   const { error } = joi.object({
     title: joi.string().required(),
     description: joi.string().required(),
@@ -20,23 +21,23 @@ const taskRegister = async (req, res, next) => {
   const register = await service.registerTask(task, name);
   if (register.error) return next(register.error);
   return res.status(201).json(register);
-};
+});
 
-const getAllTasksUser = async (req, res, next) => {
+const getAllTasksUser = rescue(async (req, res, next) => {
   const { name } = req.user;
   const getAll = await service.getAllTask(name);
   if (getAll.error) return next(getAll.error);
   return res.status(200).json(getAll);
-};
+});
 
-const getAllAlphOrder = async (req, res, next) => {
+const getAllAlphOrder = rescue(async (req, res, next) => {
   const { name } = req.user;
   const getAll = await service.getAllAlphOrder(name);
   if (getAll.error) return next(getAll.error);
   return res.status(200).json(getAll);
-};
+});
 
-const taskEdit = async (req, res, next) => {
+const taskEdit = rescue(async (req, res, next) => {
   const { name } = req.user;
   const { id } = req.params;
 
@@ -55,16 +56,16 @@ const taskEdit = async (req, res, next) => {
   const edit = await service.taskEdit(task, name);
   if (edit.error) return next(edit.error);
   return res.status(200).json(edit);
-};
+});
 
-const removeTask = async (req, res, next) => {
+const removeTask = rescue(async (req, res, next) => {
   const { name } = req.user;
   const { id } = req.params;
 
   const remove = await service.removeTask(id, name);
   if (remove.error) return next(remove.error);
   return res.status(204).send();
-};
+});
 
 module.exports = {
   taskRegister,
