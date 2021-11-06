@@ -1,7 +1,8 @@
 const joi = require('joi');
+const rescue = require('express-rescue');
 const service = require('../services/usersService');
 
-const registerUser = async (req, res, next) => {
+const registerUser = rescue(async (req, res, next) => {
   const { error } = joi.object({
     name: joi.string().required(),
     password: joi.string().required(),
@@ -14,7 +15,7 @@ const registerUser = async (req, res, next) => {
   const result = await service.registerUser({ name, password });
   if (result.error) return next(result.error);
   return res.status(201).json(result);
-};
+});
 
 module.exports = {
   registerUser,
